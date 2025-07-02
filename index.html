@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscador de Imágenes por Código</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 200px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 30px;
+    }
+    img {
+      max-width: 300px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Buscador de Imágenes</h1>
+  <input type="text" id="codigoInput" placeholder="Ingresa el código" />
+  <button onclick="buscarImagen()">Buscar</button>
+
+  <div class="result" id="resultado"></div>
+
+  <script>
+    const datos = [
+      {
+        codigo: "10708",
+        descripcion: "DIJE DE ESMERALDA COLOMBIANA - VERIFICADA",
+        imagen: "https://i.imgur.com/WtT5PqW.png"
+      },
+      {
+        codigo: "10707",
+        descripcion: "DIJE ESMERALDA CORAZON - VERIFICADA",
+        imagen: "https://i.imgur.com/c1M3AQR.png"
+      },
+      {
+        codigo: "10715",
+        descripcion: "DIJE CUADRADO CLARO - VERIFICADO",
+        imagen: "https://i.imgur.com/n1H7oXF.png"
+      }
+    ];
+
+    function buscarImagen() {
+      const codigo = document.getElementById("codigoInput").value.trim();
+      const resultado = datos.find(item => item.codigo === codigo);
+      const contenedor = document.getElementById("resultado");
+      contenedor.innerHTML = "";
+      if (resultado) {
+        contenedor.innerHTML = `
+          <h2>${resultado.descripcion}</h2>
+          <img src="${resultado.imagen}" alt="Imagen" />
+        `;
+      } else {
+        contenedor.innerHTML = "<p>No se encontró ninguna imagen con ese código.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
