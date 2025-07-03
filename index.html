@@ -6,102 +6,158 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buscador de ESMERALDAS por Código</title>
   <style>
+    :root {
+      --verde-fondo: #0f5132;
+      --verde-medio: #198754;
+      --verde-claro: #cfe2c3;
+      --verde-boton: #157347;
+      --blanco-suave: #f8f9fa;
+    }
+
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      background: linear-gradient(to bottom right, #014421, #6dc48e);
-      color: #fff;
+      background: linear-gradient(to bottom right, var(--verde-fondo), var(--verde-medio));
+      color: var(--blanco-suave);
       text-align: center;
       min-height: 100vh;
       line-height: 1.4;
     }
-    input, button {
+
+    input {
       padding: 10px;
       font-size: 16px;
-      margin: 5px;
-      border-radius: 5px;
-      border: none;
+      width: 220px;
+      border: 2px solid var(--verde-claro);
+      border-radius: 8px;
+      margin-bottom: 10px;
     }
-    input {
-      width: 200px;
-    }
+
     button {
-      background-color: #0a5f3c;
+      padding: 10px 24px;
+      font-size: 16px;
+      background-color: var(--verde-boton);
       color: white;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s ease, transform 0.2s;
     }
+
+    button:hover {
+      background-color: var(--verde-fondo);
+      transform: scale(1.05);
+    }
+
     .result {
       margin-top: 30px;
     }
+
     .result img {
       max-width: 300px;
       margin: 10px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      border-radius: 10px;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: all 0.5s ease;
     }
-    #volverBtn {
-      display: none;
-      background-color: #033d2c;
+
+    .result img.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    h1, h2 {
+      text-shadow: 1px 1px 2px #00000055;
     }
   </style>
 </head>
 <body>
   <h1>CÓDIGO DE VERIFICACIÓN</h1>
   <input type="text" id="codigoInput" placeholder="Ingresa el código" />
+  <br>
   <button onclick="buscarImagen()">Buscar</button>
-  <button id="volverBtn" onclick="volverInicio()">Volver al inicio</button>
 
   <div class="result" id="resultado"></div>
+  <button id="volverBtn" onclick="volverInicio()" style="display:none; margin-top: 20px;">Volver al inicio</button>
+
+  <div id="infoGeneral">
+    <div style="margin-top: 60px;">
+      <h2 style="font-size: 24px;">TODAS NUESTRAS PIEZAS</h2>
+      <p style="max-width: 600px; margin: 10px auto;">
+        Son auténticas esmeraldas colombianas, verificadas por expertos. Ofrecemos joyería única, seleccionada directamente desde las minas de Boyacá.
+      </p>
+      <img src="https://i.imgur.com/pQraVaG.png" style="width: 100%; max-width: 400px; border-radius: 10px;">
+    </div>
+  </div>
 
   <script>
-    let datos = [];
+    const datos = [
+      {
+        codigo: "10708",
+        descripcion: "DIJE DE ESMERALDA COLOMBIANA - VERIFICADO",
+        imagenes: [
+          "https://i.imgur.com/8GzxMkq.png",
+          "https://i.imgur.com/oFP8Jhl.png"
+        ]
+      },
+      {
+        codigo: "10707",
+        descripcion: "DIJE DE ESMERALDA CORAZÓN",
+        imagenes: [
+          "https://i.imgur.com/abcd123.png",
+          "https://i.imgur.com/efgh456.png"
+        ]
+      },
+      {
+        codigo: "10709",
+        descripcion: "DIJE CUADRADO CLARO",
+        imagenes: [
+          "https://i.imgur.com/ijkl789.png"
+        ]
+      }
+    ];
 
-    // 1. Cargar automáticamente tu archivo CSV desde Google Sheets
-    async function cargarDatos() {
-      const url = 'https://docs.google.com/spreadsheets/d/1W4mAO4dT963jgWllS0Npc0djUxwUC-T1C25JNVJU81Y/export?format=csv';
-      const respuesta = await fetch(url);
-      const texto = await respuesta.text();
-      const lineas = texto.trim().split('\n');
-      const encabezados = lineas[0].split(',');
-
-      datos = lineas.slice(1).map(linea => {
-        const valores = linea.split(',');
-        let obj = {};
-        encabezados.forEach((encabezado, i) => {
-          obj[encabezado.trim()] = valores[i]?.trim();
-        });
-        return obj;
-      });
-    }
-
-    // 2. Buscar imagenes por código
     function buscarImagen() {
       const codigo = document.getElementById("codigoInput").value.trim();
+      const resultado = datos.find(item => item.codigo === codigo);
       const contenedor = document.getElementById("resultado");
+      const infoGeneral = document.getElementById("infoGeneral");
       const volverBtn = document.getElementById("volverBtn");
+
       contenedor.innerHTML = "";
 
-      const resultado = datos.find(item => item.codigo === codigo);
       if (resultado) {
+        infoGeneral.style.display = "none";
         volverBtn.style.display = "inline-block";
+
         let html = `<h2>${resultado.descripcion}</h2>`;
-        if (resultado.imagen1) html += `<img src="${resultado.imagen1}" alt="Imagen 1">`;
-        if (resultado.imagen2) html += `<img src="${resultado.imagen2}" alt="Imagen 2">`;
+        resultado.imagenes.forEach((url, index) => {
+          html += `<img src="${url}" alt="Imagen relacionada" id="img${index}">`;
+        });
+
         contenedor.innerHTML = html;
+
+        // Aplicar efecto zoom después de mostrar
+        setTimeout(() => {
+          resultado.imagenes.forEach((_, i) => {
+            const img = document.getElementById(`img${i}`);
+            if (img) img.classList.add("show");
+          });
+        }, 50);
+
       } else {
-        contenedor.innerHTML = "<p>No se encontró ninguna esmeralda con ese código.</p>";
+        contenedor.innerHTML = "<p>No se encontró ninguna imagen con ese código.</p>";
       }
     }
 
-    // 3. Volver al estado inicial
     function volverInicio() {
+      document.getElementById("infoGeneral").style.display = "block";
       document.getElementById("resultado").innerHTML = "";
       document.getElementById("codigoInput").value = "";
       document.getElementById("volverBtn").style.display = "none";
     }
-
-    // Ejecutar al cargar la página
-    window.addEventListener('DOMContentLoaded', cargarDatos);
   </script>
 </body>
 </html>
