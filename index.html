@@ -9,22 +9,26 @@
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
-      background: linear-gradient(to bottom right, #3ba55d, #d3d3d3);
-      color: #222;
+      background: linear-gradient(to bottom right, #014421, #6dc48e);
+      color: #fff;
       text-align: center;
       min-height: 100vh;
       line-height: 1.4;
     }
-    input {
+    input, button {
       padding: 10px;
       font-size: 16px;
+      margin: 5px;
+      border-radius: 5px;
+      border: none;
+    }
+    input {
       width: 200px;
     }
     button {
-      padding: 10px 20px;
-      font-size: 16px;
+      background-color: #0a5f3c;
+      color: white;
       cursor: pointer;
-      margin-top: 10px;
     }
     .result {
       margin-top: 30px;
@@ -32,7 +36,12 @@
     .result img {
       max-width: 300px;
       margin: 10px;
-      display: inline-block;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+    }
+    #volverBtn {
+      display: none;
+      background-color: #033d2c;
     }
   </style>
 </head>
@@ -40,131 +49,59 @@
   <h1>CÓDIGO DE VERIFICACIÓN</h1>
   <input type="text" id="codigoInput" placeholder="Ingresa el código" />
   <button onclick="buscarImagen()">Buscar</button>
+  <button id="volverBtn" onclick="volverInicio()">Volver al inicio</button>
 
   <div class="result" id="resultado"></div>
-  <button id="volverBtn" onclick="volverInicio()" style="display:none;">Volver al inicio</button>
-
-  <!-- Sección informativa oculta al buscar -->
-  <div id="infoGeneral">
-    <div style="margin-top: 60px;">
-      <h2 style="font-size: 24px;">TODAS NUESTRAS PIEZAS</h2>
-      <p style="max-width: 600px; margin: 10px auto;">
-        son auténticas esmeraldas colombianas, verificadas por expertos. Ofrecemos joyería única, seleccionada directamente desde las minas de Boyacá.
-      </p>
-
-      <div style="margin-top: 30px;">
-        <p style="margin-bottom: 10px;"><strong>-Todas nuestras piezas:</strong> son talladas y pulidas de manera artesanal.</p>
-        <img src="https://i.imgur.com/pQraVaG.png" alt="Esmeralda 1" style="width: 100%; max-width: 400px; border-radius: 10px;">
-      </div>
-
-      <div style="margin-top: 60px;">
-        <p style="max-width: 600px; margin: 10px auto;">
-          <strong>-Color principal:</strong> Verde.<br>
-          <strong>-Tono:</strong> Va desde el verde claro hasta el verde oscuro.<br>
-          <strong>-Color más valioso:</strong> Verde intenso, brillante y uniforme, con un ligero tinte azulado.
-          Su color se debe a la presencia de cromo, vanadio y, en menor medida, hierro.
-        </p>
-        <img src="https://i.imgur.com/D15MC2y.png" alt="Esmeralda 2" style="width: 100%; max-width: 400px; border-radius: 10px;">
-      </div>
-
-      <div style="margin-top: 60px;">
-        <p style="max-width: 600px; margin: 10px auto;">
-          <strong>-Transparencia y claridad:</strong> suelen tener inclusiones naturales (llamadas jardines), que son aceptadas y no afectan demasiado su valor (a diferencia de otras gemas).
-          Las esmeraldas transparentes y sin inclusiones visibles son muy raras y extremadamente valiosas.
-        </p>
-        <img src="https://i.imgur.com/cXqRlHx.png" style="width: 100%; max-width: 400px; border-radius: 10px;">
-      </div>
-
-      <div style="margin-top: 60px;">
-        <p style="max-width: 600px; margin: 10px auto;">
-          <strong>-Dureza:</strong> tienen una dureza de 7.5 a 8 en la escala de Mohs.<br>
-          Aunque son duras, su estructura interna puede ser frágil debido a fracturas e inclusiones.
-        </p>
-        <img src="https://i.imgur.com/P0dtCnU.png" style="width: 100%; max-width: 400px; border-radius: 10px;">
-      </div>
-
-      <div style="margin-top: 60px;">
-        <p style="max-width: 600px; margin: 10px auto;">
-          <strong>-Origen geológico:</strong> las esmeraldas se originan en vetas hidrotermales que atraviesan rocas sedimentarias como lutitas y calizas, bajo condiciones de alta presión y temperatura.
-        </p>
-        <img src="https://i.imgur.com/SCR80Nu.png" style="width: 100%; max-width: 400px; border-radius: 10px;">
-      </div>
-
-      <div style="margin-top: 60px;">
-        <p style="max-width: 600px; margin: 10px auto;">
-          <strong>-Procedencia:</strong> Colombia es el productor más famoso de esmeraldas de alta calidad.<br>
-          Brasil, Zambia, Afganistán, Etiopía, Rusia y Madagascar también producen esmeraldas.
-        </p>
-        <img src="https://i.imgur.com/LSElE4Z.jpeg" style="width: 100%; max-width: 400px; border-radius: 10px;">
-      </div>
-
-      <div style="margin-top: 60px;">
-        <p style="max-width: 600px; margin: 10px auto;">
-          <strong>-Muy utilizadas en joyería fina:</strong> anillos, collares, pulseras, aretes. También tienen valor en colecciones y como inversión.
-        </p>
-        <img src="https://i.imgur.com/FT7TJ7x.png" style="width: 100%; max-width: 400px; border-radius: 10px;">
-      </div>
-    </div>
-  </div>
 
   <script>
-    const datos = [
-      {
-        codigo: "10708",
-        descripcion: "DIJE DE ESMERALDA COLOMBIANA - VERIFICADO",
-        imagenes: [
-          "https://i.imgur.com/8GzxMkq.png",
-          "https://i.imgur.com/oFP8Jhl.png"
-        ]
-      },
-      {
-        codigo: "10707",
-        descripcion: "DIJE DE ESMERALDA CORAZÓN",
-        imagenes: [
-          "https://i.imgur.com/abcd123.png",
-          "https://i.imgur.com/efgh456.png"
-        ]
-      },
-      {
-        codigo: "10709",
-        descripcion: "DIJE CUADRADO CLARO",
-        imagenes: [
-          "https://i.imgur.com/ijkl789.png"
-        ]
-      }
-    ];
+    let datos = [];
 
+    // 1. Cargar automáticamente tu archivo CSV desde Google Sheets
+    async function cargarDatos() {
+      const url = 'https://docs.google.com/spreadsheets/d/1W4mAO4dT963jgWllS0Npc0djUxwUC-T1C25JNVJU81Y/export?format=csv';
+      const respuesta = await fetch(url);
+      const texto = await respuesta.text();
+      const lineas = texto.trim().split('\n');
+      const encabezados = lineas[0].split(',');
+
+      datos = lineas.slice(1).map(linea => {
+        const valores = linea.split(',');
+        let obj = {};
+        encabezados.forEach((encabezado, i) => {
+          obj[encabezado.trim()] = valores[i]?.trim();
+        });
+        return obj;
+      });
+    }
+
+    // 2. Buscar imagenes por código
     function buscarImagen() {
       const codigo = document.getElementById("codigoInput").value.trim();
-      const resultado = datos.find(item => item.codigo === codigo);
       const contenedor = document.getElementById("resultado");
-      const infoGeneral = document.getElementById("infoGeneral");
       const volverBtn = document.getElementById("volverBtn");
-
       contenedor.innerHTML = "";
 
+      const resultado = datos.find(item => item.codigo === codigo);
       if (resultado) {
-        infoGeneral.style.display = "none";
         volverBtn.style.display = "inline-block";
-
         let html = `<h2>${resultado.descripcion}</h2>`;
-        if (Array.isArray(resultado.imagenes)) {
-          resultado.imagenes.forEach(url => {
-            html += `<img src="${url}" alt="Imagen relacionada">`;
-          });
-        }
+        if (resultado.imagen1) html += `<img src="${resultado.imagen1}" alt="Imagen 1">`;
+        if (resultado.imagen2) html += `<img src="${resultado.imagen2}" alt="Imagen 2">`;
         contenedor.innerHTML = html;
       } else {
-        contenedor.innerHTML = "<p>No se encontró ninguna imagen con ese código.</p>";
+        contenedor.innerHTML = "<p>No se encontró ninguna esmeralda con ese código.</p>";
       }
     }
 
+    // 3. Volver al estado inicial
     function volverInicio() {
-      document.getElementById("infoGeneral").style.display = "block";
       document.getElementById("resultado").innerHTML = "";
       document.getElementById("codigoInput").value = "";
       document.getElementById("volverBtn").style.display = "none";
     }
+
+    // Ejecutar al cargar la página
+    window.addEventListener('DOMContentLoaded', cargarDatos);
   </script>
 </body>
 </html>
