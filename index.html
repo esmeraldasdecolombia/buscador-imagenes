@@ -147,10 +147,10 @@
         infoGeneral.style.display = "none";
         volverBtn.style.display = "inline-block";
 
-        let html = <h2>${resultado.descripcion}</h2>;
+        let html = `<h2>${resultado.descripcion}</h2>`;
         if (Array.isArray(resultado.imagenes)) {
           resultado.imagenes.forEach(url => {
-            html += <img src="${url}" alt="Imagen relacionada">;
+            html += `<img src="${url}" alt="Imagen relacionada">`;
           });
         }
         contenedor.innerHTML = html;
