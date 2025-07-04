@@ -34,13 +34,15 @@
       margin: 10px;
       display: inline-block;
     }
-    .texto-explicativo {
-      margin-top: 20px;
+    #cuidados {
+      margin-top: 60px;
+      display: none;
+      background: #ffffffbb;
+      padding: 20px;
+      border-radius: 10px;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
-      font-size: 16px;
-      text-align: justify;
     }
   </style>
 </head>
@@ -51,6 +53,20 @@
 
   <div class="result" id="resultado"></div>
   <button id="volverBtn" onclick="volverInicio()" style="display:none;">Volver al inicio</button>
+  <button onclick="mostrarCuidados()">Cuidados especiales para mis joyas</button>
+
+  <!-- Sección de cuidados especiales -->
+  <div id="cuidados">
+    <h2>Cuidados especiales para mis joyas</h2>
+    <p>Aquí puedes escribir recomendaciones para mantener en óptimas condiciones tus joyas de esmeralda. Por ejemplo:</p>
+    <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
+      <li>Evita golpes fuertes o caídas que puedan fracturar la gema.</li>
+      <li>No expongas las joyas a productos químicos agresivos como perfumes, cremas o cloro.</li>
+      <li>Limpia tus joyas suavemente con un paño suave y húmedo, sin usar productos abrasivos.</li>
+      <li>Guárdalas por separado para evitar rayones con otras piezas.</li>
+      <li>No expongas tus esmeraldas a calor excesivo o cambios bruscos de temperatura.</li>
+    </ul>
+  </div>
 
   <!-- Sección informativa oculta al buscar -->
   <div id="infoGeneral">
@@ -148,8 +164,10 @@
       const contenedor = document.getElementById("resultado");
       const infoGeneral = document.getElementById("infoGeneral");
       const volverBtn = document.getElementById("volverBtn");
+      const cuidados = document.getElementById("cuidados");
 
       contenedor.innerHTML = "";
+      cuidados.style.display = "none";
 
       if (resultado) {
         infoGeneral.style.display = "none";
@@ -161,12 +179,10 @@
             html += `<img src="${url}" alt="Imagen relacionada">`;
           });
         }
-        html += `
-          <div class="texto-explicativo">
-            Tu esmeralda ha sido sometida a un riguroso análisis, donde se ha verificado su autenticidad como esmeralda colombiana. Además, se ha evaluado minuciosamente la calidad de su tallado y engaste, garantizando que cumplan con los más altos estándares técnicos y estéticos antes de ser ofrecidas al mercado.<br><br>
-            Cada esmeralda es una gema irrepetible debido a las condiciones naturales en las que se forma. Su color, intensidad, inclusiones internas  y patrones de crecimiento hacen que no existan dos esmeraldas exactamente iguales. Estas características naturales no solo certifican su autenticidad, sino que también les otorgan una identidad propia, convirtiendo cada piedra en una pieza exclusiva e irrepetible.
-          </div>
-        `;
+        html += `<p style="margin-top:20px; max-width:600px; margin-left:auto; margin-right:auto;">
+          Tu esmeralda ha sido sometida a un riguroso análisis, donde se ha verificado su autenticidad como esmeralda colombiana. Además, se ha evaluado minuciosamente la calidad de su tallado y engaste, garantizando que cumplan con los más altos estándares técnicos y estéticos antes de ser ofrecidas al mercado.<br><br>
+          Cada esmeralda es una gema irrepetible debido a las condiciones naturales en las que se forma. Su color, intensidad, inclusiones internas  y patrones de crecimiento hacen que no existan dos esmeraldas exactamente iguales. Estas características naturales no solo certifican su autenticidad, sino que también les otorgan una identidad propia, convirtiendo cada piedra en una pieza exclusiva e irrepetible.
+        </p>`;
         contenedor.innerHTML = html;
       } else {
         contenedor.innerHTML = "<p>No se encontró ninguna imagen con ese código.</p>";
@@ -178,8 +194,17 @@
       document.getElementById("resultado").innerHTML = "";
       document.getElementById("codigoInput").value = "";
       document.getElementById("volverBtn").style.display = "none";
+      document.getElementById("cuidados").style.display = "none";
+    }
+
+    function mostrarCuidados() {
+      document.getElementById("cuidados").style.display = "block";
+      document.getElementById("infoGeneral").style.display = "none";
+      document.getElementById("resultado").innerHTML = "";
+      document.getElementById("volverBtn").style.display = "inline-block";
     }
   </script>
 </body>
 </html>
+
 
