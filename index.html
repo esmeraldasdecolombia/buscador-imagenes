@@ -34,6 +34,14 @@
       margin: 10px;
       display: inline-block;
     }
+    .texto-explicativo {
+      margin-top: 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 16px;
+      text-align: justify;
+    }
   </style>
 </head>
 <body>
@@ -153,6 +161,12 @@
             html += `<img src="${url}" alt="Imagen relacionada">`;
           });
         }
+        html += `
+          <div class="texto-explicativo">
+            Tu esmeralda ha sido sometida a un riguroso análisis, donde se ha verificado su autenticidad como esmeralda colombiana. Además, se ha evaluado minuciosamente la calidad de su tallado y engaste, garantizando que cumplan con los más altos estándares técnicos y estéticos antes de ser ofrecidas al mercado.<br><br>
+            Cada esmeralda es una gema irrepetible debido a las condiciones naturales en las que se forma. Su color, intensidad, inclusiones internas  y patrones de crecimiento hacen que no existan dos esmeraldas exactamente iguales. Estas características naturales no solo certifican su autenticidad, sino que también les otorgan una identidad propia, convirtiendo cada piedra en una pieza exclusiva e irrepetible.
+          </div>
+        `;
         contenedor.innerHTML = html;
       } else {
         contenedor.innerHTML = "<p>No se encontró ninguna imagen con ese código.</p>";
@@ -168,3 +182,4 @@
   </script>
 </body>
 </html>
+
