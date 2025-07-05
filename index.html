@@ -62,37 +62,18 @@
       z-index: 999;
       text-decoration: none;
     }
-    .whatsapp-text {
-      position: fixed;
-      bottom: 30px;
-      right: 90px;
-      background-color: #25D366;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 20px;
-      font-size: 14px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      z-index: 998;
-    }
   </style>
-
-  <!-- 🚀 Librerías para PDF -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <!-- Logotipo superior -->
-  <img src="https://i.imgur.com/YfiAI8h.png" alt="Logotipo Esmeraldas" style="max-height: 100px; margin-bottom: 20px;">
-
+  <img src="https://i.imgur.com/ChoPx8G.png" alt="Logotipo Esmeraldas" style="max-height: 100px; margin-bottom: 20px;">
+  
   <h1>CÓDIGO DE VERIFICACIÓN</h1>
   <input type="text" id="codigoInput" placeholder="Ingresa el código" />
   <button onclick="buscarImagen()">Buscar</button>
 
-  <div class="result" id="resultado">
-  <button onclick="descargarPDF()" id="pdfBtn" style="display:none; margin-top: 20px;">Descargar en PDF</button>
-</div>
+  <div class="result" id="resultado"></div>
   <button id="volverBtn" onclick="volverInicio()" style="display:none;">Volver al inicio</button>
-  <button id="descargarBtn" onclick="descargarPDF()" style="display:none;">Descargar como PDF</button>
   <button onclick="mostrarCuidados()">Cuidados especiales para mis joyas</button>
 
   <!-- Sección de cuidados especiales -->
@@ -100,12 +81,23 @@
     <h2>Cuidados especiales para mis joyas</h2>
     <p>Una esmeralda es una joya única y viva. Con los cuidados adecuados, conservará su brillo y belleza por generaciones.</p>
     <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
-      <li>Evita golpes y caídas: Las esmeraldas, aunque son piedras preciosas, pueden ser frágiles debido a sus inclusiones naturales.</li>
-      <li>Aléjala de productos químicos: Perfumes, cremas, cloro, productos de limpieza y cosméticos pueden dañar la piedra.</li>
-      <li>Limpieza suave y adecuada: Limpia tu joya con un paño suave y húmedo. No uses vapor ni ultrasonido.</li>
-      <li>No la expongas a cambios bruscos de temperatura: Pueden generar fracturas internas.</li>
-      <li>Guárdala por separado: En su estuche o envuelta en paño suave.</li>
-      <li>Revisión periódica: Asegúrate de que la piedra esté bien sujeta.</li>
+      <li> Evita golpes y caídas:
+   Las esmeraldas, aunque son piedras preciosas, pueden ser frágiles debido a sus inclusiones naturales. Evita usarlas durante actividades físicas o trabajos manuales.
+</li>
+      <li>Aléjala de productos químicos:
+   Perfumes, cremas, cloro, productos de limpieza y cosméticos pueden dañar la piedra o su engaste. Aplícalos siempre antes de ponerte la joya y evita el contacto directo.
+</li>
+      <li>Limpieza suave y adecuada:
+   Limpia tu joya con un paño suave y húmedo. No uses limpiadores ultrasónicos ni vapor, ya que pueden causar fracturas internas. Agua tibia y jabón neutro son seguros si se usan con cuidado.
+</li>
+      <li>No la expongas a cambios bruscos de temperatura:
+   Las esmeraldas pueden sufrir estrés térmico. Evita exponerlas al sol por períodos prolongados o a ambientes muy fríos de forma repentina.
+</li>
+      <li>Guárdala por separado:
+   Guarda tu joya en un estuche individual o envuelta en un paño suave para evitar que se raye o golpee con otras piezas.
+</li>
+      <li>Revisión periódica:
+   Revisar el estado del engaste y asegurarte de que la piedra esté bien sujeta.</li>
     </ul>
   </div>
 
@@ -118,14 +110,14 @@
       </p>
 
       <div style="margin-top: 30px;">
-        <p style="margin-bottom: 10px;"><strong>-Todas nuestras piezas:</strong> talladas y pulidas artesanalmente.</p>
+        <p style="margin-bottom: 10px;"><strong>-Todas nuestras piezas:</strong> son talladas y pulidas de manera artesanal.</p>
         <img src="https://i.imgur.com/pQraVaG.png" alt="Esmeralda 1" style="width: 100%; max-width: 400px; border-radius: 10px;">
       </div>
 
       <div style="margin-top: 60px;">
         <p style="max-width: 600px; margin: 10px auto;">
           <strong>-Color principal:</strong> Verde.<br>
-          <strong>-Tono:</strong>Va desde el verde claro hasta el verde oscuro.<br>
+          <strong>-Tono:</strong> Va desde el verde claro hasta el verde oscuro.<br>
           <strong>-Color más valioso:</strong> Verde intenso, brillante y uniforme, con un ligero tinte azulado.
           Su color se debe a la presencia de cromo, vanadio y, en menor medida, hierro.
         </p>
@@ -142,12 +134,13 @@
 
       <div style="margin-top: 60px;">
         <p style="max-width: 600px; margin: 10px auto;">
-         <strong>-Dureza:</strong> tienen una dureza de 7.5 a 8 en la escala de Mohs.<br>
-          Aunque son duras, su estructura interna puede ser frágil debido a fracturas e inclusiones.</p>
+          <strong>-Dureza:</strong> tienen una dureza de 7.5 a 8 en la escala de Mohs.<br>
+          Aunque son duras, su estructura interna puede ser frágil debido a fracturas e inclusiones.
+        </p>
         <img src="https://i.imgur.com/P0dtCnU.png" style="width: 100%; max-width: 400px; border-radius: 10px;">
       </div>
 
-       <div style="margin-top: 60px;">
+      <div style="margin-top: 60px;">
         <p style="max-width: 600px; margin: 10px auto;">
           <strong>-Origen geológico:</strong> las esmeraldas se originan en vetas hidrotermales que atraviesan rocas sedimentarias como lutitas y calizas, bajo condiciones de alta presión y temperatura.
         </p>
@@ -172,8 +165,6 @@
 
   <!-- Botón WhatsApp flotante -->
   <a class="whatsapp-button" href="https://wa.me/573212103923" target="_blank" title="Escríbenos por WhatsApp">💬</a>
-  <div class="whatsapp-text">Comunícate con nosotros</div>
-  
 
   <script>
     const datos = [
@@ -217,10 +208,10 @@
         infoGeneral.style.display = "none";
         volverBtn.style.display = "inline-block";
 
-        let html = `<h2>${resultado.descripcion}</h2>`;
+        let html = <h2>${resultado.descripcion}</h2>;
         if (Array.isArray(resultado.imagenes)) {
           resultado.imagenes.forEach(url => {
-            html += `<img src="${url}" alt="Imagen relacionada">`;
+            html += <img src="${url}" alt="Imagen relacionada">;
           });
         }
         html += `<p style="margin-top:20px; max-width:600px; margin-left:auto; margin-right:auto;">
@@ -238,6 +229,7 @@
       document.getElementById("resultado").innerHTML = "";
       document.getElementById("codigoInput").value = "";
       document.getElementById("volverBtn").style.display = "none";
+
       document.getElementById("cuidados").style.display = "none";
     }
 
@@ -247,40 +239,6 @@
       document.getElementById("resultado").innerHTML = "";
       document.getElementById("volverBtn").style.display = "inline-block";
     }
-
-
-    <script>
-  // ... funciones anteriores
-
-  async function descargarPDF() {
-    const resultado = document.getElementById("resultado");
-
-    // Asegúrate de que haya algo que descargar
-    if (!resultado || resultado.innerHTML.trim() === "") {
-      alert("No hay contenido para descargar.");
-      return;
-    }
-
-    const canvas = await html2canvas(resultado);
-    const imgData = canvas.toDataURL("image/png");
-
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF();
-
-    const pageWidth = pdf.internal.pageSize.getWidth();
-    const pageHeight = (canvas.height * pageWidth) / canvas.width;
-
-    pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
-    pdf.save("esmeralda.pdf");
-  }
-</script>
-      
-  <script>
-  // tu código JavaScript
-</script>
-
-<!-- Librerías para generar PDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  </script>
 </body>
 </html>
