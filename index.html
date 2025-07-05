@@ -75,6 +75,10 @@
       z-index: 998;
     }
   </style>
+
+  <!-- 🚀 Librerías para PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
   <!-- Logotipo superior -->
@@ -84,8 +88,11 @@
   <input type="text" id="codigoInput" placeholder="Ingresa el código" />
   <button onclick="buscarImagen()">Buscar</button>
 
-  <div class="result" id="resultado"></div>
+  <div class="result" id="resultado">
+  <button onclick="descargarPDF()" id="pdfBtn" style="display:none; margin-top: 20px;">Descargar en PDF</button>
+</div>
   <button id="volverBtn" onclick="volverInicio()" style="display:none;">Volver al inicio</button>
+  <button id="descargarBtn" onclick="descargarPDF()" style="display:none;">Descargar como PDF</button>
   <button onclick="mostrarCuidados()">Cuidados especiales para mis joyas</button>
 
   <!-- Sección de cuidados especiales -->
@@ -166,6 +173,7 @@
   <!-- Botón WhatsApp flotante -->
   <a class="whatsapp-button" href="https://wa.me/573212103923" target="_blank" title="Escríbenos por WhatsApp">💬</a>
   <div class="whatsapp-text">Comunícate con nosotros</div>
+  
 
   <script>
     const datos = [
@@ -239,6 +247,40 @@
       document.getElementById("resultado").innerHTML = "";
       document.getElementById("volverBtn").style.display = "inline-block";
     }
-  </script>
+
+
+    <script>
+  // ... funciones anteriores
+
+  async function descargarPDF() {
+    const resultado = document.getElementById("resultado");
+
+    // Asegúrate de que haya algo que descargar
+    if (!resultado || resultado.innerHTML.trim() === "") {
+      alert("No hay contenido para descargar.");
+      return;
+    }
+
+    const canvas = await html2canvas(resultado);
+    const imgData = canvas.toDataURL("image/png");
+
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
+
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = (canvas.height * pageWidth) / canvas.width;
+
+    pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
+    pdf.save("esmeralda.pdf");
+  }
+</script>
+      
+  <script>
+  // tu código JavaScript
+</script>
+
+<!-- Librerías para generar PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
 </html>
